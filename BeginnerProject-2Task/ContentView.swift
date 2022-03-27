@@ -6,11 +6,31 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+    
+    @ObservedObject var taskStore = TaskStore()
+    
+    @State var newTodo : String = ""
+    
+    var searchBar : some View {
+        HStack {
+            TextField("Enter Text", text:
+                        self.$newTodo)
+        }
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack{
+                List(self.taskStore.tasks) { task in
+                    
+                    
+                }
+                .navigationBarTitle("Tasks")
+            }
+        }
     }
 }
 
